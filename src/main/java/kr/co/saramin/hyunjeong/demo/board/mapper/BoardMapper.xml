@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="kr.co.saramin.hyunjeong.demo.board.mapper.BoardMapper">
+
+    <select id="boardCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM BOARD
+    </select>
+
+    <select id="boardList" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM BOARD
+    </select>
+
+    <select id="boardDetail" resultType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
+        SELECT
+          *
+        FROM board
+        WHERE idx = #{idx}
+    </select>
+
+    <insert id="boardInsert" parameterType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
+        insert into board (subject, content, name, password, ip)
+        values (#{subject}, #{content}, #{name}, #{password}, #{ip})
+    </insert>
+
+    <update id="boardUpdate" parameterType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
+        update board set
+        <if test="subject != null">
+            subject = #{subject}
+        </if>
+        <if test="content != null and subject != null">, </if>
+        <if test="content != null">
+            content = #{content}
+        </if>
+        where idx = #{idx}
+    </update>
+
+    <delete id="boardDelete" parameterType="int">
+        delete from board where idx = #{idx}
+    </delete>
+</mapper>
