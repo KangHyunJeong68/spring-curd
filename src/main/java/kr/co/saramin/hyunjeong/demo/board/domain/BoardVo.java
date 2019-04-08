@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class BoardVo {
 
-    private int bno;
+    private int idx;
     private String subject;
     private String content;
-    private String writer;
+    private String ip;
     private Date reg_date;
 
     public int getBno() {
-        return bno;
+        return idx;
     }
 
-    public void setBno(int bno) {
-        this.bno = bno;
+    public void setBno(int idx) {
+        this.idx = idx;
     }
 
     public String getSubject() {
@@ -34,12 +34,12 @@ public class BoardVo {
         this.content = content;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getIp() {
+        return ip;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public Date getReg_date() {

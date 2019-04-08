@@ -2,15 +2,15 @@ package kr.co.saramin.hyunjeong.demo.board.service;
 
 import kr.co.saramin.hyunjeong.demo.board.domain.BoardVo;
 import kr.co.saramin.hyunjeong.demo.board.mapper.BoardMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service("kr.co.saramin.hyunjeong.demo.board.service.BoardService")
 public class BoardService {
 
-    @Resource(name="kr.co.saramin.hyunjeong.demo.board.mapper.BoardMapper")
+    @Autowired
     BoardMapper mBoardMapper;
 
     public List<BoardVo> boardListService() throws Exception {

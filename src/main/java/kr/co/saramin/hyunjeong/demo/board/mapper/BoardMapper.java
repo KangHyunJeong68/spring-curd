@@ -1,16 +1,18 @@
 package kr.co.saramin.hyunjeong.demo.board.mapper;
 
 import kr.co.saramin.hyunjeong.demo.board.domain.BoardVo;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Repository("kr.co.saramin.hyunjeong.demo.board.mapper.BoardMapper")
+@Mapper
 public interface BoardMapper {
 
     public int boardCount() throws Exception;
 
-    public List<BoardVo> boardList() throws Exception;
+    public default List<BoardVo> boardList() throws Exception {
+        return null;
+    }
 
     public BoardVo boardDetail(int idx) throws Exception;
 
