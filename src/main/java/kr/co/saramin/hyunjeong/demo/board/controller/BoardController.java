@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class BoardController {
+
     @Resource(name="kr.co.saramin.hyunjeong.demo.board.service.BoardService")
     BoardService bs;
 
@@ -21,7 +22,7 @@ public class BoardController {
         return "list";
     }
 
-    @RequestMapping("/detail/{bno}")
+    @RequestMapping("/detail/{idx}")
     private String boardDetail(@PathVariable int idx, Model mo) throws Exception {
         mo.addAttribute("detail", bs.boardDetailService(idx));
         return "detail";
