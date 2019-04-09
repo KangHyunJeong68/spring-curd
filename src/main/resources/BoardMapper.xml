@@ -11,9 +11,9 @@
         FROM BOARD
     </select>
 
-    <select id="boardList" resultType="int">
+    <select id="boardList" resultType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
         SELECT
-            COUNT(*)
+            *
         FROM BOARD
     </select>
 
@@ -25,23 +25,25 @@
     </select>
 
     <insert id="boardInsert" parameterType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
-        insert into board (subject, content, name, password, ip)
-        values (#{subject}, #{content}, #{name}, #{password}, #{ip})
+        insert into board (subject, content, name, password, ip, regdate)
+        values (#{subject}, #{content}, #{name}, #{password}, #{ip}, now())
     </insert>
-
-    <update id="boardUpdate" parameterType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
-        update board set
-        <if test="subject != null">
-            subject = #{subject}
-        </if>
-        <if test="content != null and subject != null">, </if>
-        <if test="content != null">
-            content = #{content}
-        </if>
-        where idx = #{idx}
-    </update>
 
     <delete id="boardDelete" parameterType="int">
         delete from board where idx = #{idx}
     </delete>
+
+    <update id="boardUpdate" parameterType="kr.co.saramin.hyunjeong.demo.board.domain.BoardVo">
+        update board set
+        name = #{name},
+        ip = #{ip},
+        <if test="subject != null">
+            subject = #{subject},
+        </if>
+        <if test="content != null">
+            content = #{content},
+        </if>
+        upddate = now()
+        where idx = #{idx}
+    </update>
 </mapper>

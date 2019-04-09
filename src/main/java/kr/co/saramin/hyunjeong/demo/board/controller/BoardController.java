@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
 
 @Controller
 public class BoardController {
@@ -34,20 +35,43 @@ public class BoardController {
     }
 
     @RequestMapping("/insertProc")
-    private int boardInsertProc(HttpServletRequest rs) throws Exception {
-        BoardVo bo = (BoardVo) rs.getParameterMap();
-        return bs.boardInsertService(bo);
+    private String boardInsertProc(HttpServletRequest rs) throws Exception {
+        BoardVo board = new BoardVo();
+        board.setSubject(rs.getParameter("subject"));
+        board.setContent(rs.getParameter("content"));
+        board.setName(rs.getParameter("writer"));
+        board.setPassword(rs.getParameter("password"));
+        board.setIp(this.getLocalIp());
+        bs.boardInsertService(board);
+        return "redirect:/list";
     }
 
     @RequestMapping("/update/{idx}")
-    private String boardUpdateForm() {
+    private String boardUpdateForm(@PathVariable int idx, Model mo) throws Exception {
+        mo.addAttribute("data", bs.boardDetailService(idx));
         return "update";
     }
 
     @RequestMapping("/updateProc")
-    private int boardUpdateProc(HttpServletRequest rs) throws Exception {
-        BoardVo vo = (BoardVo) rs.getParameterMap();
-        return bs.boardUpdateService(vo);
+    private String boardUpdateProc(HttpServletRequest rs) throws Exception {
+        String pw = rs.getParameter("password");
+        int idx = Integer.parseInt(rs.getParameter("idx"));
+        BoardVo updateData = bs.boardDetailService((idx));
+        String dbPw = updateData.getPassword();
+
+        if (!dbPw.equals(pw)) {
+            return "redirect:/update/" + idx;
+        }
+
+        BoardVo vo = new BoardVo();
+        vo.setSubject(rs.getParameter("subject"));
+        vo.setContent(rs.getParameter("content"));
+        vo.setName(rs.getParameter("writer"));
+        vo.setIp(this.getLocalIp());
+        vo.setIdx(idx);
+        int result = bs.boardUpdateService(vo);
+        String type = result == 0 ? "update" : "detail";
+        return "redirect:/" + type + "/" + idx;
     }
 
     @RequestMapping("/delete/{idx}")
@@ -56,4 +80,15 @@ public class BoardController {
         return "redirect:/list";
     }
 
+    private String getLocalIp() {
+        InetAddress local;
+        String ip = null;
+        try {
+            local = InetAddress.getLocalHost();
+            ip = local.getHostAddress();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return ip;
+    }
 }

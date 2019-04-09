@@ -1,20 +1,36 @@
 package kr.co.saramin.hyunjeong.demo.board.domain;
 
-import java.util.Date;
-
 public class BoardVo {
 
     private int idx;
     private String subject;
     private String content;
     private String ip;
-    private Date reg_date;
+    private String name;
+    private String password;
+    private String regDate;
 
-    public int getBno() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getIdx() {
         return idx;
     }
 
-    public void setBno(int idx) {
+    public void setIdx(int idx) {
         this.idx = idx;
     }
 
@@ -42,12 +58,12 @@ public class BoardVo {
         this.ip = ip;
     }
 
-    public Date getReg_date() {
-        return reg_date;
+    public String getRegDate() {
+        return regDate;
     }
 
-    public void setReg_date(Date reg_date) {
-        this.reg_date = reg_date;
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
 }
 
