@@ -34,18 +34,24 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSP -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>8.0.36</version>
-        </dependency>
+<!--        &lt;!&ndash; JSP &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tomcat.embed</groupId>-->
+<!--            <artifactId>tomcat-embed-jasper</artifactId>-->
+<!--            <version>8.0.36</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet.jsp.jstl</groupId>-->
+<!--            <artifactId>javax.servlet.jsp.jstl-api</artifactId>-->
+<!--            <version>1.2.1</version>-->
+<!--        </dependency>-->
 
         <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-            <version>1.2.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
 
         <!--JDBC -->
         <dependency>
@@ -74,6 +80,15 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.projectlombok/lombok &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <version>1.18.6</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
 
     </dependencies>
 
